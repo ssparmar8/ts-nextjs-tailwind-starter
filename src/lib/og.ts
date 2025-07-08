@@ -9,16 +9,28 @@ type OpenGraphType = {
 
 // Updated OG function to use local logo
 export function openGraph({
-  siteName: _siteName,
-  templateTitle: _templateTitle,
-  description: _description,
+  siteName,
+  templateTitle,
+  description,
   // Use the local logo as default
   logo = `${siteConfig.url}/images/rklogo_black.png`,
 }: OpenGraphType): string {
-  // For now, return the logo URL directly
+  // Build query parameters for OG image generation
+  const params = new URLSearchParams();
+
+  // Add required parameters first
+  params.append('siteName', siteName);
+  params.append('description', description);
+
+  // Add optional templateTitle after required parameters
+  if (templateTitle) {
+    params.append('templateTitle', templateTitle);
+  }
+
+  // For now, return the logo URL with query parameters
   // In the future, you can set up your own OG image generation service
-  // The parameters are kept for future extensibility
-  return logo;
+  const queryString = params.toString().replace(/\+/g, '%20');
+  return queryString ? `${logo}?${queryString}` : logo;
 }
 
 // Simple OG image URL generator for local use
