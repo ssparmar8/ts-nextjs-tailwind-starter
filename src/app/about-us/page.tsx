@@ -2,15 +2,17 @@ import { Metadata } from 'next';
 import Image from 'next/image';
 import * as React from 'react';
 
+import { generateSEO, pageSEOConfigs } from '@/lib/seo';
+
 import ButtonLink from '@/components/links/ButtonLink';
+
+import AboutUspageSlider from './AboutUspageSlider';
 
 import Logo from '~/images/assets/rklogo_black.png';
 
-export const metadata: Metadata = {
-  title: 'About Us',
-  description:
-    'Learn more about our company, mission, and the team behind our innovative solutions.',
-};
+export const metadata: Metadata = generateSEO({
+  ...pageSEOConfigs.about,
+});
 
 export default function AboutUsPage() {
   return (
@@ -31,6 +33,11 @@ export default function AboutUsPage() {
             We are a passionate team dedicated to creating innovative solutions
             that make a difference in people's lives.
           </p>
+        </div>
+
+        {/* About Us Page Slider */}
+        <div className='mt-16 w-full'>
+          <AboutUspageSlider />
         </div>
 
         {/* Mission Section */}

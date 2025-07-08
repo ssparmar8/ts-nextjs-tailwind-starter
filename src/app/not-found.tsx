@@ -2,9 +2,11 @@ import { Metadata } from 'next';
 import * as React from 'react';
 import { RiAlarmWarningFill } from 'react-icons/ri';
 
-export const metadata: Metadata = {
-  title: 'Not Found',
-};
+import { generateSEO, pageSEOConfigs } from '@/lib/seo';
+
+export const metadata: Metadata = generateSEO({
+  ...pageSEOConfigs.notFound,
+});
 
 export default function NotFound() {
   return (

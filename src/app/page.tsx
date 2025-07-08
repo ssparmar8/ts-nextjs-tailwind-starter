@@ -3,6 +3,8 @@ import Image from 'next/image';
 import * as React from 'react';
 import '@/lib/env';
 
+import { generateSEO, pageSEOConfigs } from '@/lib/seo';
+
 import ArrowLink from '@/components/links/ArrowLink';
 import ButtonLink from '@/components/links/ButtonLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
@@ -21,12 +23,10 @@ import Logo from '~/images/assets/rklogo_black.png';
 // Before you begin editing, follow all comments with `STARTERCONF`,
 // to customize the default configuration.
 
-// !STARTERCONF Change page metadata
-export const metadata: Metadata = {
-  title: 'Home',
-  description:
-    'Welcome to our Next.js starter template with TypeScript and Tailwind CSS',
-};
+// Enhanced SEO metadata for home page
+export const metadata: Metadata = generateSEO({
+  ...pageSEOConfigs.home,
+});
 
 export default function HomePage() {
   return (
