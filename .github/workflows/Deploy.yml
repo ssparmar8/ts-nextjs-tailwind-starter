@@ -8,13 +8,12 @@ name: Node.js CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ['main']
   pull_request:
-    branches: [ "main" ]
+    branches: ['main']
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
 
     strategy:
@@ -23,20 +22,24 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: npm ci
-    - run: npm install --force
-    - run: npm run build --if-present
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+      - run: npm ci
+      - run: npm install --force
+      - run: npm run build --if-present
 
-    - name: Setup AWS CLI
-      uses: aws-actions/configure-aws-credentials@v3
-      with:
-        aws-access-key-id: ${{ secrets.AWS_SECRET_ID }}
-        aws-secret-access-key: ${{ secrets.AWS_ACCESS_KEY }}
-        aws-region: us-east-1
+      - name: Setup AWS CLI
+        uses: aws-actions/configure-aws-credentials@v3
+        with:
+          aws-access-key-id: ${{ secrets.AWS_SECRET_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-region: us-east-1
 
+      - name: Deploy Modified Files
+        run: |
+          zip -r nextjsApp.zip  src/ scripts/ public/ appspec.yml package.json pnpm-lock.yaml .env.example .npmrc .nvmrc .prettierrc.js commitlint.config.js  jest.config.js jest.setup.js next-env.d.ts next-sitemap.config.js next.config.js postcss.config.js tailwind.config.ts tsconfig.json vercel.json
+          aws s3 cp nextjsApp.zip s3://nextjs-talwindcss-app/;
