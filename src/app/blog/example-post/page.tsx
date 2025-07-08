@@ -14,6 +14,7 @@ export const metadata: Metadata = generateSEO(
     modifiedTime: new Date().toISOString(),
     tags: ['SEO', 'Next.js', 'Content', 'Tutorial'],
     category: 'Web Development',
+    slug: 'example-post',
   })
 );
 
@@ -22,10 +23,45 @@ export default function ExamplePostPage() {
     <main>
       <section className='bg-white'>
         <div className='layout min-h-screen py-20'>
+          {/* Breadcrumb Navigation */}
+          <nav className='mb-8 text-sm text-gray-600'>
+            <ol className='flex items-center space-x-2'>
+              <li>
+                <a href='/' className='hover:text-blue-600'>
+                  Home
+                </a>
+              </li>
+              <li>/</li>
+              <li>
+                <a href='/blog' className='hover:text-blue-600'>
+                  Blog
+                </a>
+              </li>
+              <li>/</li>
+              <li className='text-gray-900'>Example Blog Post</li>
+            </ol>
+          </nav>
+
           <article>
             <header className='mb-8'>
               <h1 className='text-4xl font-bold mb-4'>Example Blog Post</h1>
-              <p className='text-gray-600'>Published on January 1, 2024</p>
+              <div className='flex items-center gap-4 text-gray-600 mb-4'>
+                <span>By Your Name</span>
+                <span>•</span>
+                <time dateTime='2024-01-01T00:00:00.000Z'>January 1, 2024</time>
+                <span>•</span>
+                <span className='text-blue-600'>Web Development</span>
+              </div>
+              <div className='flex flex-wrap gap-2'>
+                {['SEO', 'Next.js', 'Content', 'Tutorial'].map((tag) => (
+                  <span
+                    key={tag}
+                    className='px-3 py-1 bg-blue-100 text-blue-800 text-sm rounded-full'
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </header>
 
             <div className='prose max-w-none'>
