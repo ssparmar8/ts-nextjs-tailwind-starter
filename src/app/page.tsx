@@ -1,10 +1,13 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
 import * as React from 'react';
 import '@/lib/env';
 
 import ArrowLink from '@/components/links/ArrowLink';
 import ButtonLink from '@/components/links/ButtonLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
+
+import Logo from '~/images/assets/rklogo_black.png';
 
 /**
  * SVGR Support
@@ -13,7 +16,6 @@ import UnstyledLink from '@/components/links/UnstyledLink';
  * You can override the next-env if the type is important to you
  * @see https://stackoverflow.com/questions/68103844/how-to-override-next-js-svg-module-declaration
  */
-import Logo from '~/svg/Logo.svg';
 
 // !STARTERCONF -> Select !STARTERCONF and CMD + SHIFT + F
 // Before you begin editing, follow all comments with `STARTERCONF`,
@@ -30,7 +32,15 @@ export default function HomePage() {
   return (
     <section className='bg-white'>
       <div className='layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>
-        <Logo className='w-16' />
+        <Image
+          src={Logo}
+          alt='Logo'
+          className='h-16 w-auto object-contain'
+          width={0}
+          height={0}
+          sizes='100vw'
+          priority
+        />
         <h1 className='mt-4'>Next.js + Tailwind CSS + TypeScript Starter</h1>
         <p className='mt-2 text-sm text-gray-800'>
           A starter for Next.js, Tailwind CSS, and TypeScript with Absolute

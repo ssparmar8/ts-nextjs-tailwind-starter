@@ -1,9 +1,10 @@
 import { Metadata } from 'next';
+import Image from 'next/image';
 import * as React from 'react';
 
 import ButtonLink from '@/components/links/ButtonLink';
 
-import Logo from '~/svg/Logo.svg';
+import Logo from '~/images/assets/rklogo_black.png';
 
 export const metadata: Metadata = {
   title: 'About Us',
@@ -16,7 +17,15 @@ export default function AboutUsPage() {
     <section className='bg-white'>
       <div className='layout relative flex min-h-screen flex-col items-center justify-center py-12'>
         <div className='w-full max-w-4xl text-center'>
-          <Logo className='mx-auto w-16' />
+          <Image
+            src={Logo}
+            alt='Logo'
+            className='mx-auto h-16 w-auto object-contain'
+            width={0}
+            height={0}
+            sizes='100vw'
+            priority
+          />
           <h1 className='mt-4'>About Us</h1>
           <p className='mt-6 text-lg text-gray-700'>
             We are a passionate team dedicated to creating innovative solutions
