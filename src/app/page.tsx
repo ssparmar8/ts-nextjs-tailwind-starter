@@ -1,12 +1,10 @@
-'use client';
-
-import Head from 'next/head';
+import { Metadata } from 'next';
 import * as React from 'react';
 import '@/lib/env';
 
 import ArrowLink from '@/components/links/ArrowLink';
 import ButtonLink from '@/components/links/ButtonLink';
-import UnderlineLink from '@/components/links/UnderlineLink';
+import UnderlineLink from '@/components/links/UnstyledLink';
 import UnstyledLink from '@/components/links/UnstyledLink';
 
 /**
@@ -22,12 +20,16 @@ import Logo from '~/svg/Logo.svg';
 // Before you begin editing, follow all comments with `STARTERCONF`,
 // to customize the default configuration.
 
+// !STARTERCONF Change page metadata
+export const metadata: Metadata = {
+  title: 'Home',
+  description:
+    'Welcome to our Next.js starter template with TypeScript and Tailwind CSS',
+};
+
 export default function HomePage() {
   return (
     <main>
-      <Head>
-        <title>Hi</title>
-      </Head>
       <section className='bg-white'>
         <div className='layout relative flex min-h-screen flex-col items-center justify-center py-12 text-center'>
           <Logo className='w-16' />
