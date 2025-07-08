@@ -4,4 +4,4 @@ sudo pnpm run build
 
 sudo pm2 delete nextjs-app
 
-sudo pm2 start pnpm --name "nextjs-app" -- start
+pm2 start --name your-app-name --interpreter pnpm -- start
