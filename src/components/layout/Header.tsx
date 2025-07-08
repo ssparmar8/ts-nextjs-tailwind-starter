@@ -1,11 +1,12 @@
 'use client';
 
+import Image from 'next/image';
 import * as React from 'react';
 import { useState } from 'react';
 
 import UnstyledLink from '@/components/links/UnstyledLink';
 
-import Logo from '~/svg/Logo.svg';
+import Logo from '~/images/assets/rklogo_black.png';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -23,10 +24,15 @@ export default function Header() {
           {/* Logo */}
           <div className='flex items-center'>
             <UnstyledLink href='/' className='flex items-center space-x-2'>
-              <Logo className='h-8 w-8' />
-              <span className='text-lg font-semibold text-gray-900'>
-                NextJS Starter
-              </span>
+              <Image
+                src={Logo}
+                alt='Logo'
+                className='h-12 w-auto object-contain'
+                width={0}
+                height={0}
+                sizes='100vw'
+                priority
+              />
             </UnstyledLink>
           </div>
 
